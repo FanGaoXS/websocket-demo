@@ -27,7 +27,7 @@ export default {
     handleLoginButton() {
       const username = this.loginForm.username.trim()
       //验证用户名
-      if (username.length<6){
+      if (username.length<4){
         alert('请输入正确的用户名')
         return
       }

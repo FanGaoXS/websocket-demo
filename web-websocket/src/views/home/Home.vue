@@ -55,11 +55,16 @@ export default {
         name: 'Login'
       })
     }
+    //初始化WebSocket
     this.webSocketInit()
+  },
+  beforeDestroy() {
+    this.webSocketObject.close();//在该组件销毁时关闭该连接以节约资源
   },
   methods: {
     webSocketInit(){
-      this.webSocketObject = new WebSocket('ws://localhost:8000/websocket/'+this.username)
+      const webSocketUrl = 'ws://localhost:8000/websocket/'+this.username
+      this.webSocketObject = new WebSocket(webSocketUrl);
       this.webSocketObject.onopen = this.webSocketOnOpen
       this.webSocketObject.onmessage = this.webSocketOnMessage
       this.webSocketObject.onerror = this.webSocketOnError
